@@ -1,0 +1,16 @@
+.post__like {
+    background-image: url('../../../images/heart.svg');
+    background-size: contain;
+    width: 22px;
+    height: 18px;
+    border: none;
+    transition: opacity .3s ease-out;
+}
+
+.post__like:hover {
+    cursor: url('../../../images/pointer.svg'), auto;
+}
+
+.post__like:active {
+    opacity: .6;
+}
