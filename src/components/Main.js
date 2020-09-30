@@ -1,20 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import api from '../utils/api.js';
+import Card from './Card';
 
 function Main(props) {
     const [userName, setUserName] = React.useState('');
     const [userDescription, setUserDescription] = React.useState('');
     const [userAvatar, setUserAvatar] = React.useState('');
+    const [cards, setCards] = React.useState('');
 
-    // api.getAppInfo()
-    // .then(([userInfoRes]) => {
-    //     //PROFILE
-    //     //Profile setup
-    //     const userInfo = new UserInfo({name: ".profile__username", job: ".profile__bio", avatar: ".profile__pic"});
-    //     userInfo.setUserInfo({username: userInfoRes.name, about: userInfoRes.about});
-    //     userInfo.setAvatar({avatar: userInfoRes.avatar});
-    //     const myId = userInfoRes._id;
-    // })
+    React.useEffect(() => {
+        api.getUserInfo()
+        .then((res) => {
+            setUserName(res.name);
+            setUserDescription(res.about);
+            setUserAvatar(res.avatar);
+        })
+    }, []);
+
+    React.useEffect(() => {
+        api.getCardList()
+        .then((res) => {
+            setCards(res);
+        })
+    }, [setCards, cards]);
+
 
     return (
         <main className="content">
@@ -35,6 +44,13 @@ function Main(props) {
             </section>
             <section className="photo-grid">
                 <ul className="photo-grid__posts">
+                    {[...cards].map((card, i) => {
+                        return <Card key = {i} 
+                                    card={card} 
+                                    onCardClick={(card) => {
+                                        props.onCardClick(card);
+                          }}/>
+                    })}
                 </ul>
             </section>
         </main>
