@@ -6,8 +6,8 @@ export default function Card({card, i, onCardClick}) {
     };
 
     return(
-        <li className="post" onClick={handleClick}>
-            <div className="post__image" style={{ backgroundImage: `url(${card.link})` }}>
+        <li className="post">
+            <div className="post__image" onClick={handleClick} style={{ backgroundImage: `url(${card.link})` }}>
                 <button className="button post__remove post__remove_disabled"></button>
             </div>
             <div className="post__info">

@@ -14,26 +14,32 @@ export default function App() {
   const [isFullViewOpen, setFullViewOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState('');
 
+  const onEditProfile=() => {
+    setEditProfilePopupOpen(true);
+  }
+  const onAddPlace=() => {
+    setAddPlacePopupOpen(true);
+  }
+  const onEditAvatar=() => {
+    setEditAvatarPopupOpen(true);
+  }
+  const onDeleteCard=() => {
+    setDeletePlacePopupOpen(true);
+  }
+  const onCardClick=(card) => {
+    setSelectedCard(card);
+    setFullViewOpen(true);
+  }
+
   return (
     <div className="page">
       <Header />
-      <Main 
-        onEditProfile={() => {
-            setEditProfilePopupOpen(true);
-        }}
-        onAddPlace={() => {
-            setAddPlacePopupOpen(true);
-        }}
-        onEditAvatar={() => {
-            setEditAvatarPopupOpen(true);
-        }}
-        onDeleteCard={() => {
-            setDeletePlacePopupOpen(true);
-        }}
-        onCardClick={(card) => {
-            setSelectedCard(card);
-            setFullViewOpen(true);
-        }}
+      <Main
+        onEditProfile = {onEditProfile}
+        onAddPlace = {onAddPlace}
+        onEditAvatar = {onEditAvatar}
+        onDeleteCard = {onDeleteCard}
+        onCardClick = {onCardClick}
       />
       <Footer />
       <PopupWithForm name="update" title="Edit profile" button="Save" isOpen={isEditProfilePopupOpen} onClose={() => {setEditProfilePopupOpen(false)}}>
