@@ -17,7 +17,6 @@ export default function AddPlacePopup({isOpen, onClose, onAddCard}) {
     function handlePlaceSubmit(e) {
         e.preventDefault();
         onAddCard(name, link);
-        e.target.reset();
     }
     return (
         <PopupWithForm name="create" title="New Place" button="Create" isOpen={isOpen} onClose={onClose} onSubmit={handlePlaceSubmit}>
