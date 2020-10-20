@@ -1,6 +1,11 @@
 import React from 'react';
 
 export default function PopupWithForm({isOpen, name, onClose, title, children, button, onSubmit}) {
+
+    React.useEffect((e) => {
+        e.target.reset();
+    }, [isOpen]);
+    
     const isActive = isOpen ? "modal__container_active" : "";
     return (
         <div className={`modal__container ${isActive} modal__container_type_${name}`}>
